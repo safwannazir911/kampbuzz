@@ -1,0 +1,222 @@
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import {
+  Home,
+  LineChart,
+  Package2,
+  PanelLeft,
+  Settings,
+  SquarePlus,
+} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import useSignOut from "react-auth-kit/hooks/useSignOut";
+import { useEffect, useState } from "react";
+import { CrudServices } from "../../../Api/CrudServices";
+import { Skeleton } from "@/components/ui/skeleton";
+
+export function Dashboard() {
+  const signOut = useSignOut();
+  const navigate = useNavigate();
+  const [author, setAuthor] = useState();
+  const [loading, setLoading] = useState(false);
+
+  const crudServices = new CrudServices();
+
+  useEffect(() => {
+    fetchUserProfile();
+  }, []);
+
+  const fetchUserProfile = async () => {
+    setLoading(true);
+    try {
+      const response = await crudServices.FetchDetails();
+      // console.log(response.data.author);
+      if (response.data) {
+        setAuthor(response?.data?.author);
+      } else {
+        toast.error("Failed to fetch user profile. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      toast.error("Failed to fetch user profile. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRoute = (route) => {
+    navigate(route);
+  };
+
+  const handleLogout = () => {
+    signOut();
+    navigate("/");
+  };
+  return (
+    <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+        <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
+          <Link
+            to="/home"
+            className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+          >
+            <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
+            <span className="sr-only">Kamp Buzz</span>
+          </Link>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                to="/home"
+                className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+              >
+                <Home className="h-5 w-5" />
+                <span className="sr-only">Dashboard</span>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent side="right">Dashboard</TooltipContent>
+          </Tooltip>
+
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                to="/createPost"
+                className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+              >
+                <SquarePlus className="h-5 w-5" />
+                <span className="sr-only">Create Post</span>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent side="right">Create Post</TooltipContent>
+          </Tooltip>
+
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                to="/analitics"
+                className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+              >
+                <LineChart className="h-5 w-5" />
+                <span className="sr-only">Analytics</span>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent side="right">Analytics</TooltipContent>
+          </Tooltip>
+        </nav>
+        <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                to="/settings"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+              >
+                <Settings className="h-5 w-5" />
+                <span className="sr-only">Settings</span>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent side="right">Settings</TooltipContent>
+          </Tooltip>
+        </nav>
+      </aside>
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+        <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button size="icon" variant="outline" className="sm:hidden">
+                <PanelLeft className="h-5 w-5" />
+                <span className="sr-only">Toggle Menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="sm:max-w-xs">
+              <nav className="grid gap-6 text-lg font-medium">
+                <Link
+                  to="/home"
+                  className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+                >
+                  <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
+                  <span className="sr-only">Kamp Buzz</span>
+                </Link>
+                <Link
+                  to="/home"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <Home className="h-5 w-5" />
+                  Dashboard
+                </Link>
+                <Link
+                  to="/createPost"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <SquarePlus className="h-5 w-5" />
+                  Create Post
+                </Link>
+
+                <Link
+                  to="/analitics"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <LineChart className="h-5 w-5" />
+                  Analitics
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
+          <DropdownMenu>
+            <h1 className="text-xl lg:text-2xl font-semibold">Dashboard</h1>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="overflow-hidden rounded-full"
+              >
+                {loading ? (
+                  <div className="flex justify-center items-center">
+                    <Skeleton className="h-8 w-8 rounded-full bg-slate-400" />
+                  </div>
+                ) : (
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage
+                      src={author?.avatar}
+                      alt={author?.institutionAuthor}
+                    />
+                    <AvatarFallback>
+                      {author?.institutionAuthor.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                )}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>{author?.institutionAuthor}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleRoute("/profile/update")}>
+                Update Profile
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </header>
+
+        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
+}

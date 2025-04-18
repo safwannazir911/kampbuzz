@@ -1,0 +1,64 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+class Environment {
+  PORT;
+  BASE_URL;
+  MONOGDB_URI;
+  JWT_SECRET;
+  JWT_EXPIRATION;
+  JWT_REFRESH_SECRET;
+  UPLOADS_DIR = "uploads";
+  NODEMAILER_HOST;
+  NODEMAILER_PORT;
+  NODEMAILER_USER;
+  NODEMAILER_PASS;
+  MY_AWS_BUCKET_NAME;
+  MY_AWS_BUCKET_REGION;
+  MY_AWS_BUCKET_ACCESS_KEY;
+  MY_AWS_BUCKET_SECRET_KEY;
+  RAZORPAY_KEY_ID;
+  RAZORPAY_KEY_SECRET;
+
+  constructor(envProps) {
+    this.PORT = envProps.PORT;
+    this.BASE_URL = envProps.BASE_URL;
+    this.MONOGDB_URI = envProps.MONOGDB_URI;
+    this.JWT_SECRET = envProps.JWT_SECRET;
+    this.JWT_EXPIRATION = envProps.JWT_EXPIRATION;
+    this.JWT_REFRESH_SECRET = envProps.JWT_REFRESH_SECRET;
+    this.UPLOADS_DIR = envProps.UPLOADS_DIR;
+    this.NODEMAILER_HOST = envProps.NODEMAILER_HOST;
+    this.NODEMAILER_PORT = envProps.NODEMAILER_PORT;
+    this.NODEMAILER_USER = envProps.NODEMAILER_USER;
+    this.NODEMAILER_PASS = envProps.NODEMAILER_PASS;
+    this.MY_AWS_BUCKET_NAME = envProps.MY_AWS_BUCKET_NAME;
+    this.MY_AWS_BUCKET_REGION = envProps.MY_AWS_BUCKET_REGION;
+    this.MY_AWS_BUCKET_ACCESS_KEY = envProps.MY_AWS_BUCKET_ACCESS_KEY;
+    this.MY_AWS_BUCKET_SECRET_KEY = envProps.MY_AWS_BUCKET_SECRET_KEY;
+    this.RAZORPAY_KEY_ID = envProps.RAZORPAY_KEY_ID;
+    this.RAZORPAY_KEY_SECRET = envProps.RAZORPAY_KEY_SECRET;
+  }
+}
+
+const environment = {
+  PORT: process.env.PORT || 3000,
+  BASE_URL: process.env.BASE_URL || "http://localhost:3000",
+  MONOGDB_URI: process.env.MONOGDB_URI,
+  JWT_SECRET: process.env.JWT_SECRET,
+  JWT_EXPIRATION: process.env.JWT_EXPIRATION || "1h",
+  JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET,
+  UPLOADS_DIR: process.env.UPLOADS_DIR || "uploads",
+  NODEMAILER_HOST: process.env.NODEMAILER_HOST,
+  NODEMAILER_PORT: process.env.NODEMAILER_PORT,
+  NODEMAILER_USER: process.env.NODEMAILER_USER,
+  NODEMAILER_PASS: process.env.NODEMAILER_PASS,
+  MY_AWS_BUCKET_NAME: process.env.MY_AWS_BUCKET_NAME,
+  MY_AWS_BUCKET_REGION: process.env.MY_AWS_BUCKET_REGION,
+  MY_AWS_BUCKET_ACCESS_KEY: process.env.MY_AWS_BUCKET_ACCESS_KEY,
+  MY_AWS_BUCKET_SECRET_KEY: process.env.MY_AWS_BUCKET_SECRET_KEY,
+  RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
+  RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET,
+};
+
+export const env = new Environment(environment);

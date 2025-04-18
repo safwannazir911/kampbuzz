@@ -1,0 +1,19 @@
+.custom-background {
+    background-image: url("../asset/rectangle.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 1rem;
+}
+
+.signup-left {
+    background: linear-gradient(162deg, #B794FA 0%, #FF43FF 100%);
+
+
+}
+
+.signup-footer-logo {
+    background-image: url("../asset/signup-footer-logo.svg");
+    background-repeat: repeat-x;
+    filter: blur(2px);
+}

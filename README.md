@@ -1,5 +1,5 @@
 # KampBuzz
-KampBuzz. An Social Media Platform for students where different Universities, colleges and Schools could disseminate information related to academia with authenticity, credibility and reliability.
+KampBuzz: A social media platform for students, where different universities, colleges, and schools can disseminate academic information with authenticity, credibility, and reliability.
 
 ## Front-End
 - ReactJS

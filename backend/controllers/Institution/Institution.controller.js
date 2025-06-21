@@ -313,7 +313,7 @@ export class InstitutionController extends BaseController {
             amount: amount * 100, // amount in paise
             currency: "INR",
         };
-
+        console.log(this.razorpay.key_id + " " + this.razorpay.key_secret);
         try {
             const order = await this.razorpay.orders.create(options);
             console.log(order);

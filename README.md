@@ -1,16 +1,14 @@
 # KampBuzz
-KampBuzz. An Advertising Platform for the different Universities, colleges and Schools.
+A social media platform for students, where different universities, colleges, and schools can disseminate academic information with authenticity, credibility, and reliability.
 
 ## Front-End
 - ReactJS
 - TailwindCSS
 - Shadcn-UI
 
-- Will Add more as the project grows
 ## Back-End
 - NodeJS
 - ExpressJS
-- Will Add more as the project grows
 
 # How to run the project
 - Clone the repository

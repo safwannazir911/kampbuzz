@@ -28,16 +28,25 @@ export const Signup = () => {
           <StudentSignupForm />
 
           <div className="mt-5 italic text-gray-600 text-md ">
+
             <a
               href="https://kb-institution.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline flex items-center justify-center"
             >
-              Are you an
-              <span className="text-purple-500 font-semibold ml-1">institution</span>? Here is where you could
-              <span className="text-purple-500 font-semibold ml-1">register</span>
-              <ExternalLink className="inline ml-1" />
+              <div>
+                Are you an
+                <span className="text-purple-500 font-semibold ml-1">institution</span>?
+              </div>
+
+              <div>
+                Here is where you could
+                <span className="text-purple-500 font-semibold ml-1">register</span>
+                <ExternalLink className="inline ml-1" />
+              </div>
+
+
             </a>
           </div>
 

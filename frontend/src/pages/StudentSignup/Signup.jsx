@@ -27,20 +27,22 @@ export const Signup = () => {
 
           <StudentSignupForm />
 
-          <div className="mt-20 ">
+          <div className="mt-5 italic text-gray-600 text-md ">
             <a
-              href="https://kampbuzz-institution.vercel.app"
-              className="flex items-center space-x-2"
+              href="https://kb-institution.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
+              className="hover:underline flex items-center justify-center"
             >
-              Have a thing for writing? Be a Buzzer.....
-              <span className="font-medium border-b-4 border-black rounded-md">
-                Get Onboard
-              </span>
-              <ExternalLink />
+              Are you an
+              <span className="text-purple-500 font-semibold ml-1">institution</span>? Here is where you could
+              <span className="text-purple-500 font-semibold ml-1">register</span>
+              <ExternalLink className="inline ml-1" />
             </a>
           </div>
+
+
+
         </div>
       </div>
     </>

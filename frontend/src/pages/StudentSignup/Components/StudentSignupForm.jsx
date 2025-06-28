@@ -283,8 +283,8 @@ const StudentSignupForm = () => {
                 <Button
                   type="submit"
                   className="px-10 bg-gradient-to-r from-pink-500 to-purple-600 text-white"
-                  disabled={isSubmitting}                
-                  >
+                  disabled={isSubmitting}
+                >
                   Signup
                 </Button>
               </div>
@@ -462,22 +462,7 @@ const StudentSignupForm = () => {
             </form>
           </Form>
 
-          <div className="flex items-center">
-            <span className="w-[200px] h-[3px] bg-white inline border rounded-[10px]">
-              {" "}
-            </span>
-            <span className="mb-1  p-2 text-black font-bold ">or</span>
-            <span className="w-[200px] h-[3px] bg-white inline border rounded-[10px]">
-              {" "}
-            </span>
-          </div>
 
-          <div className="flex justify-center  items-center ">
-            <img
-              src={GoogleLogo}
-              className="w-[36px] bg-white rounded-[100%]"
-            />
-          </div>
         </div>
       </div>
     </>

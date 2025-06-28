@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TrendingUp, Megaphone, ExternalLink } from "lucide-react";
 import advert1 from "../../../asset/advert_2.jpg";
+import advert2 from "../../../asset/advert_3.jpg";
 import useNavigation from "@/feature/NavigationContext";
 import { FeedService } from "@/API/FeedService";
 import { toast } from "sonner";
@@ -19,6 +20,20 @@ const RightSection = () => {
     {
       _id: "663db54acc1bbc7d8003f658",
       name: "Islamic University",
+      suggested: "Suggested for you",
+      profilePic:
+        "https://www.timeshighereducation.com/student/sites/default/files/harvard-university-campus.jpg",
+    },
+    {
+      _id: "663db54acc1bbc7d8003f659",
+      name: "Kashmir University",
+      suggested: "Suggested for you",
+      profilePic:
+        "https://www.timeshighereducation.com/student/sites/default/files/harvard-university-campus.jpg",
+    },
+    {
+      _id: "663db54acc1bbc7d8003f622",
+      name: "MIT",
       suggested: "Suggested for you",
       profilePic:
         "https://www.timeshighereducation.com/student/sites/default/files/harvard-university-campus.jpg",
@@ -100,9 +115,23 @@ const RightSection = () => {
               </a>
             </div>
           </div>
+          <div className="m-1 relative">
+            <a href="https://www.instagram.com/" target="_blank">
+              <img
+                src={advert2}
+                alt="Ad 1"
+                className="w-full h-auto object-cover rounded"
+              />
+            </a>
+            <div className="absolute top-0 right-0">
+              <a href="https://www.instagram.com/" target="_blank">
+                <ExternalLink className="text-violet-500" size={"20"} />
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-row gap-x-2 items-center overflow-hidden my-4">
+        {/* <div className="flex flex-row gap-x-2 items-center overflow-hidden my-4">
           <h2 className="sm:text-sm md:text-xl xl:text-2xl ml-2 font-semibold">
             Buzzing
           </h2>
@@ -133,7 +162,8 @@ const RightSection = () => {
               </li>
             ))
           )}
-        </ul>
+        </ul> */}
+
         <h2 className="sm:text-sm md:text-xl xl:text-2xl font-semibold ml-2 mb-4">
           Buzz4U
         </h2>

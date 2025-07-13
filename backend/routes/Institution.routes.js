@@ -50,4 +50,9 @@ router.route("/payment/verify").post(institutionController.verifyPayment);
 //transfer coins
 router.route("/transfer-coins").post(institutionController.transferKCoinsToPublisher);
 
+
+//convert student to author
+
+router.route("/change-student-status").post(institutionController.changeStudentStatus);
+
 export default router;

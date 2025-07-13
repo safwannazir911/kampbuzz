@@ -33,4 +33,7 @@ router.route("/dashboard").get(studentController.studentDashboard);
 router.route("/update").post(upload, studentController.updateStudent);
 router.route("/upload/avatar").post(upload, studentDashboardController.uploadProfilePicture);
 
+router.route("/author-status").post(upload, studentController.createAuthorRequest);
+
+
 export default router;

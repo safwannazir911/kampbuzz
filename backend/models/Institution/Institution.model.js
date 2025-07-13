@@ -78,6 +78,13 @@ const institutionSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+
+        studentAuthors: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "AuthorStatus",
+            }
+        ]
     },
     { timestamps: true },
 );

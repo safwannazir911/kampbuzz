@@ -85,4 +85,8 @@ export const MESSAGES = {
 
     //Bookmark Messages
     POST_BOOKMARKED: "Post bookmarked successfully.",
+
+
+
+    AUTHOR_REQUEST_SENT: "Author request sent successfully.",
 };

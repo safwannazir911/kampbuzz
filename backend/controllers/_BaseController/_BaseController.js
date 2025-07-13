@@ -153,7 +153,7 @@ export class BaseController {
                 rejectUnauthorized: false,
             },
             // Increase the timeout value (in milliseconds)
-            connectionTimeout: 10000, // 10 seconds
+            connectionTimeout: 50000, // 10 seconds
             greetingTimeout: 10000, // 10 seconds
             socketTimeout: 10000, // 10 seconds
         });
@@ -193,7 +193,7 @@ export class BaseController {
                   <table align="center" role="presentation" style="width: 100%; border-collapse: collapse;">
                     <tr>
                       <td style="padding: 1rem; background-color: #f0e9ff; border-radius: 5px; text-align: center;">
-                        <img src="https://kampbuzz-student.vercel.app/assets/logo-p6Bc42y7.png" alt="KampBuzz Logo" style="max-width: 50px; margin-bottom: 10px;">
+                        <img src="https://kb-student.vercel.app/assets/logo-p6Bc42y7.png" alt="KampBuzz Logo" style="max-width: 50px; margin-bottom: 10px;">
                         <h2 style="font-size: 24px; color: #503d58; font-weight: bold; margin-bottom: 10px;">Action Required: One-Time Verification Code</h2>
                         <p style="font-size: 14px; color: #777; margin-bottom: 10px;">You are receiving this email because a request was made for a one-time password that can be used for authentication.</p>
                         <p style="font-size: 14px; color: #777; margin-bottom: 10px;">Please enter the following code for verification:</p>
@@ -234,4 +234,64 @@ export class BaseController {
             };
         }
     }
+
+    async _sendAuthorCredentialsEmail({ email, password }) {
+        try {
+
+            // Set up the email options
+            const mailOptions = {
+                from: "KampBuzz <noreply@kampbuzz.com>",
+                to: email,
+                subject: "Welcome to KampBuzz – Your Author Account Is Ready!",
+                html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 30px; background-color: #f9f7ff; border: 1px solid #e0dffc; border-radius: 8px;">
+                  <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="https://kb-student.vercel.app/assets/logo-p6Bc42y7.png" alt="KampBuzz Logo" style="width: 60px; margin-bottom: 10px;" />
+                    <h2 style="color: #4c2b74; font-size: 24px; margin-bottom: 5px;">Welcome to KampBuzz!</h2>
+                    <p style="font-size: 14px; color: #777;">Your author account has been successfully created.</p>
+                  </div>
+            
+                  <div style="background-color: #fff; padding: 20px; border-radius: 6px; border: 1px solid #ddd;">
+                    <h3 style="color: #503d58; margin-bottom: 10px;">Your Login Credentials</h3>
+                    <p style="font-size: 16px; color: #333; margin: 5px 0;"><strong>Email:</strong> ${email}</p>
+                    <p style="font-size: 16px; color: #333; margin: 5px 0;"><strong>Password:</strong> ${password}</p>
+                    <p style="font-size: 14px; color: #999; margin-top: 10px;">You can change your password after logging in.</p>
+                  </div>
+            
+                  <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://kb-author.vercel.app" target="_blank" style="display: inline-block; background-color: #6b44d8; color: #fff; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Log In to Your Author Account</a>
+                  </div>
+            
+                  <p style="font-size: 13px; color: #888; text-align: center; margin-top: 30px;">If you did not request this account, you can safely ignore this email.</p>
+            
+                  <p style="font-size: 13px; color: #888; text-align: center;">— The KampBuzz Team</p>
+                </div>
+              `,
+            };
+
+
+            // Send the email
+            const emailSuccess = await new Promise((resolve) => {
+                this.transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.error("Error sending email:", error);
+                        resolve(false); // Email sending failed
+                    } else {
+                        console.log("Email sent:", info.response);
+                        resolve(true); // Email sending succeeded
+                    }
+                });
+            });
+
+            return {
+                emailSuccess,
+            };
+        } catch (error) {
+            console.error("Error sending email:", error.message);
+            return {
+                emailSuccess: false,
+            };
+        }
+    }
+
 }

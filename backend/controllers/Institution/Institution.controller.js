@@ -8,11 +8,12 @@ import {
     verifyRefreshToken,
 } from "../../middlewares/index.js";
 import Validator from "../../utils/Validators.js";
-import { Institution } from "../../models/index.js";
+import { AuthorStatus, Institution, InstitutionAuthor, Student } from "../../models/index.js";
 import { BaseController } from "../_BaseController/_BaseController.js";
 import Razorpay from "razorpay";
 import { env } from "../../env.js";
 import crypto from "crypto";
+import generateSecurePassword from "../../utils/passwords/generateStrongPassword.js";
 
 export class InstitutionController extends BaseController {
     constructor() {
@@ -30,6 +31,8 @@ export class InstitutionController extends BaseController {
         this.verifyPayment = this.verifyPayment.bind(this);
         this.transferKCoinsToPublisher =
             this.transferKCoinsToPublisher.bind(this);
+
+        this.changeStudentStatus = this.changeStudentStatus.bind(this);
     }
 
     async createInstitution(req, res) {
@@ -359,6 +362,85 @@ export class InstitutionController extends BaseController {
         }
     }
 
+
+    async changeStudentStatus(req, res) {
+        const institution = req.user;
+        if (!this._isAuthorized(institution, "institution", res)) return;
+
+        const { id, status } = req.body;
+
+        const password = generateSecurePassword(7);
+
+        try {
+            const statusBody = await AuthorStatus.findById(id);
+            if (!statusBody) {
+                return this._sendResponse(res, MESSAGES.SOMETHING_WENT_WRONG, 404);
+            }
+
+            const student = await Student.findById(statusBody.student);
+            if (!student) {
+                return this._sendResponse(res, MESSAGES.STUDENT_NOT_FOUND, 404);
+            }
+
+
+            if (!["reject", "approved"].includes(status)) {
+                return this._sendResponse(res, MESSAGES.INVALID_STATUS, 400);
+            }
+
+            if (status === "reject") {
+                statusBody.status = "rejected";
+                await statusBody.save();
+                return this._sendResponse(res, MESSAGES.OPERATION_SUCCESSFUL, 200);
+            }
+
+            else if (status === "approved") {
+
+                const response = await this._findInstitution(institution._id, res);
+                if (!response) return;
+
+                const email = student.email;
+
+                const ifAuthorExists = await InstitutionAuthor.findOne({ email, institution: institution._id });
+                if (ifAuthorExists) {
+                    return this._sendResponse(res, MESSAGES.AUTHOR_EMAIL_ALREADY_EXISTS, 400);
+                }
+
+                const hashedPassword = await this._hashPassword(password);
+
+                const author = await InstitutionAuthor.create({
+                    institution: institution._id,
+                    institutionAuthor: student.name,
+                    authorEmail: student.email,
+                    institutionPublisher: institution.institutionPublisher[0],
+                    password: hashedPassword,
+                });
+
+                const filteredAuthor = this._filterAuthorData(author);
+
+
+                statusBody.status = "approved";
+                await statusBody.save();
+
+                const { emailSuccess } = await this._sendAuthorCredentialsEmail({
+                    email: student.email,
+                    password: password,
+                })
+
+                if (!emailSuccess) {
+                    return this._sendResponse(res, MESSAGES.SOMETHING_WENT_WRONG, 500);
+                }
+
+                return this._sendResponse(res, MESSAGES.AUTHOR_CREATED_SUCCESSFULLY, 200, { ...filteredAuthor });
+            }
+
+        } catch (error) {
+            return this._sendError(res, error);
+        }
+    }
+
+
+
+
     // Protected methods
 
     async _validateInstitution(data) {
@@ -384,6 +466,11 @@ export class InstitutionController extends BaseController {
         const { password, createdAt, updatedAt, isDeleted, ...newInstitution } =
             institution._doc;
         return newInstitution;
+    }
+
+    _filterAuthorData(author) {
+        const { password, isDeleted, createdAt, updatedAt, __v, ...newAuthor } = author._doc;
+        return newAuthor;
     }
 }
 

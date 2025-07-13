@@ -1,4 +1,4 @@
-import { Student, UserOTPVerification } from "../../models/index.js";
+import { AuthorStatus, Institution, Student, UserOTPVerification } from "../../models/index.js";
 import { MESSAGES } from "../../utils/index.js";
 import {
   authenticateUser,
@@ -23,6 +23,7 @@ export class StudentController extends BaseController {
     this.forgotPassword = this.forgotPassword.bind(this);
     this.verifyOTPForForgotPassword = this.verifyOTPForForgotPassword.bind(this);
     this.sendOTP = this.sendOTP.bind(this);
+    this.createAuthorRequest = this.createAuthorRequest.bind(this);
   }
 
   async createStudent(req, res) {
@@ -647,6 +648,55 @@ export class StudentController extends BaseController {
       return this._sendError(res, error);
     }
   }
+
+
+
+  async createAuthorRequest(req, res) {
+    try {
+      const user = req.user;
+
+      const { file } = req.files;
+
+      if (!this._isAuthorized(user, "student", res)) return;
+
+      const student = await Student.findById(user._id);
+      if (!student) {
+        return this._sendResponse(res, MESSAGES.STUDENT_NOT_FOUND, 404);
+      }
+
+      const authorStatusDocument = await AuthorStatus.create({
+        student: student._id,
+        verificationDocument: file.location,
+      });
+
+      if (!authorStatusDocument) {
+        return this._sendResponse(res, MESSAGES.SOMETHING_WENT_WRONG, 500);
+      }
+
+
+      //Add the id of author status to institutoins studentAuthors attribute
+      const institution = await Institution.findByIdAndUpdate(
+        student.institution,
+        {
+          $addToSet: {
+            studentAuthors: authorStatusDocument._id,
+          },
+        },
+        { new: true },
+      );
+
+      if (!institution) {
+        return this._sendResponse(res, MESSAGES.INSTITUTION_NOT_FOUND, 404);
+      }
+
+      // For now, just returning a success message
+      return this._sendResponse(res, MESSAGES.AUTHOR_REQUEST_SENT, 200);
+    } catch (error) {
+      return this._sendError(res, error);
+    }
+  }
 }
+
+
 
 export const protectedStudentRoutes = [authenticateUser];

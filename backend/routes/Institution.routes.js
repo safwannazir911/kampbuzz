@@ -54,5 +54,6 @@ router.route("/transfer-coins").post(institutionController.transferKCoinsToPubli
 //convert student to author
 
 router.route("/change-student-status").post(institutionController.changeStudentStatus);
+router.route("/get-institution-author-requests").get(institutionController.getInstitutionAuthorRequests);
 
 export default router;

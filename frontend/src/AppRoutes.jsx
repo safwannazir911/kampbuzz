@@ -22,6 +22,7 @@ import PasswordResetForm from "./pages/Auth/PasswordResetForm";
 import ForgotPasswordForm from "./pages/Auth/ForgotPasswordForm";
 import SinglePost from "./pages/Feed/Components/single-post/SinglePost";
 import ProfileUpdate from "./pages/profile/ProfileUpdate";
+import RegisterAuthor from "./pages/profile/RegisterAuthor";
 
 const AppRoutes = () => {
   return (
@@ -65,10 +66,10 @@ const AppRoutes = () => {
             <Route path="/feed" element={<Feed />} />
             <Route path="/feed/:id" element={<SinglePost />} />
             <Route path="/post/:id" element={<ExploreViewCard />} />
+            <Route path="/student/register-as-author" element={<RegisterAuthor />} />
             <Route path="/reset-password" element={<PasswordResetForm />} />
             <Route path="/profile/update" element={<ProfileUpdate />} />
           </Route>
-
           <Route path="/forgot-password" element={<ForgotPasswordForm />} />
         </Routes>
       </NavigationProvider>

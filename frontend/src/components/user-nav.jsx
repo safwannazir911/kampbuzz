@@ -15,6 +15,7 @@ import {
   STUDENT_DASHBOARD,
   RESET_PASSWORD,
   PROFILE_UPDATE,
+  REGISTER_AS_AUTHOR,
 } from "@/constants/endpoints";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
 import { imageUrl } from "@/constants/imageUrls";
@@ -58,6 +59,9 @@ export function UserNav({ data }) {
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => handleRoute(STUDENT_DASHBOARD)}>
             Dashboard
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => handleRoute(REGISTER_AS_AUTHOR)}>
+            Register as an Author
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => handleRoute(RESET_PASSWORD)}>
             Reset Password

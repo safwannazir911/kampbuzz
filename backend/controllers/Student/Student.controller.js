@@ -666,8 +666,9 @@ export class StudentController extends BaseController {
 
       const authorStatusDocument = await AuthorStatus.create({
         student: student._id,
-        verificationDocument: file.location,
+        verificationDocument: file[0].location,
       });
+
 
       if (!authorStatusDocument) {
         return this._sendResponse(res, MESSAGES.SOMETHING_WENT_WRONG, 500);

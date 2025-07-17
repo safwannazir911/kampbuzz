@@ -7,6 +7,8 @@ export const STUDENT_UPDATE = "student/update";
 export const STUDENT_DASHBOARD = "student/dashboard";
 export const RESET_PASSWORD = "/reset-password";
 export const PROFILE_UPDATE = "/profile/update";
+export const REGISTER_AS_AUTHOR = "/student/register-as-author";
+
 
 //Institution Endpoints
 export const INSTITUTION_LOGIN = "institution/login";

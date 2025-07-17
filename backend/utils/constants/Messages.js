@@ -3,6 +3,7 @@ export const MESSAGES = {
     UNAUTHORIZED_ACCESS: "Unauthorized access",
     INVALID_ID: "Invalid ID",
     INVALID_STATUS: "Invalid Status",
+    SUCCESS: "Success",
 
     MISSING_FIELDS: "Missing required fields",
     PASSWORDS_NOT_MATCH: "Passwords do not match",

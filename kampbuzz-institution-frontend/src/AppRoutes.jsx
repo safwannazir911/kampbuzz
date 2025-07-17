@@ -11,6 +11,7 @@ import TransferCoins from "./pages/Dashboard/Components/TransferCoins";
 import Create from "./pages/Dashboard/Components/Create";
 import { Stats } from "./pages/Dashboard/Components/Stats";
 import ProfileUpdate from "./pages/Dashboard/profile/ProfileUpdate";
+import AuthorRequests from "./pages/Dashboard/Components/AuthorRequests";
 
 const store = createStore({
   authName: "institution_token",
@@ -33,11 +34,8 @@ const AppRoutes = () => {
               <Route path="/profile/update" element={<ProfileUpdate />} />
               <Route path="/add-coins" element={<AddCoins />} />
               <Route path="/trasfer-coins" element={<TransferCoins />} />
-              <Route
-                path="/payment-history"
-                element={<h1>Payment History</h1>}
-              />
-              <Route path="/analitics" element={<h1>Analitics</h1>} />
+              <Route path="/payment-history" element={<h1>Payment History</h1>} />
+              <Route path="/author-requests" element={<AuthorRequests />} />
               <Route path="/settings" element={<h1>Settings</h1>} />
             </Route>
           </Route>

@@ -33,6 +33,7 @@ export class InstitutionController extends BaseController {
             this.transferKCoinsToPublisher.bind(this);
 
         this.changeStudentStatus = this.changeStudentStatus.bind(this);
+        this.getInstitutionAuthorRequests = this.getInstitutionAuthorRequests.bind(this);
     }
 
     async createInstitution(req, res) {
@@ -400,7 +401,8 @@ export class InstitutionController extends BaseController {
 
                 const email = student.email;
 
-                const ifAuthorExists = await InstitutionAuthor.findOne({ email, institution: institution._id });
+                const ifAuthorExists = await InstitutionAuthor.findOne({ authorEmail: email, institution: institution._id });
+
                 if (ifAuthorExists) {
                     return this._sendResponse(res, MESSAGES.AUTHOR_EMAIL_ALREADY_EXISTS, 400);
                 }
@@ -439,6 +441,29 @@ export class InstitutionController extends BaseController {
     }
 
 
+
+    async getInstitutionAuthorRequests(req, res) {
+        const institution = req.user;
+        if (!this._isAuthorized(institution, "institution", res)) return;
+
+        try {
+            const authorRequests = await Institution.findById(institution._id)
+                .populate({
+                    path: "studentAuthors",
+                    select: "-createdAt -updatedAt -isDeleted -__v",
+                    populate: {
+                        path: "student",
+                        select: "name email avatar -_id",
+                    }
+                })
+                .select("_id");
+
+            const { ...authors } = authorRequests._doc;
+            return this._sendResponse(res, MESSAGES.SUCCESS, 200, { ...authors });
+        } catch (error) {
+            return this._sendError(res, error);
+        }
+    }
 
 
     // Protected methods

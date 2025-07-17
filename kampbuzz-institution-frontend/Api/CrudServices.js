@@ -151,4 +151,29 @@ export class CrudServices {
     };
     return this.fetchJson(`${this.backendUrl}/upload/cover-image`, options);
   }
+
+
+  async getInstitutionAuthorRequests() {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${this.token}`,
+      },
+    };
+    return this.fetchJson(`${this.backendUrl}/get-institution-author-requests`, options);
+  }
+
+  async updateAuthorRequestStatus(id, status) {
+    console.log("Update Author Request Status:", { id, status });
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${this.token}`,
+      },
+      data: JSON.stringify({ id, status }),
+    };
+    return this.fetchJson(`${this.backendUrl}/change-student-status`, options);
+  }
 }

@@ -1,7 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import {
   Home,
-  LineChart,
+  UserPlus,
   Package2,
   PanelLeft,
   Settings,
@@ -133,15 +133,16 @@ export function Dashboard() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                to="/analitics"
+                to="/author-requests"
                 className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
               >
-                <LineChart className="h-5 w-5" />
-                <span className="sr-only">Analytics</span>
+                <UserPlus className="h-5 w-5" />
+                <span className="sr-only">Author Requests</span>
               </Link>
             </TooltipTrigger>
-            <TooltipContent side="right">Analytics</TooltipContent>
+            <TooltipContent side="right">Author Requests</TooltipContent>
           </Tooltip>
+
         </nav>
         <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
           <Tooltip>
@@ -212,7 +213,7 @@ export function Dashboard() {
                   to="/analitics"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                 >
-                  <LineChart className="h-5 w-5" />
+                  <UserPlus className="h-5 w-5" />
                   Analitics
                 </Link>
               </nav>

@@ -150,4 +150,19 @@ export class CrudServices {
 
     return this.fetchJson(`${this.backendUrl}/student/sendOTP`, options);
   }
+
+
+  async registerAuthor(data) {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: this.token,
+      },
+      data: data,
+    };
+
+    return this.fetchJson(`${this.backendUrl}/student/author-status`, options);
+  }
+
 }

@@ -78,10 +78,10 @@ const AuthorRequests = () => {
                                 <p className="text-sm text-gray-600">{req.student?.email}</p>
                                 <p
                                     className={`text-sm mt-1 ${req.status === "approved"
-                                            ? "text-green-600"
-                                            : req.status === "rejected"
-                                                ? "text-red-600"
-                                                : "text-yellow-600"
+                                        ? "text-green-600"
+                                        : req.status === "rejected"
+                                            ? "text-red-600"
+                                            : "text-yellow-600"
                                         }`}
                                 >
                                     Status: {req.status}
@@ -98,7 +98,7 @@ const AuthorRequests = () => {
                                     >
                                         View Document
                                     </DialogTrigger>
-                                    <DialogContent className="max-w-2xl w-full h-[80vh] overflow-auto">
+                                    <DialogContent className="max-w-2xl w-full h-auto overflow-auto">
                                         <img
                                             src={selectedDoc}
                                             alt="Verification Document"

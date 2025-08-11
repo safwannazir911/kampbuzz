@@ -5,7 +5,7 @@ import Profile from "./InstitutionProfilesPages";
 import NotFound from "@/components/NotFound";
 import { FeedService } from "@/API/FeedService";
 
-// @Tabeed-H
+
 // To implement institutionProfile click from anywhere on the application
 import useNavigation from "@/feature/NavigationContext";
 

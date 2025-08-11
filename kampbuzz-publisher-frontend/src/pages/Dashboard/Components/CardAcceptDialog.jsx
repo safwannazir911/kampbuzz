@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 
 export function CardAcceptDialog({ data, onUpdateStatus }) {
   /**
-   * @Tabeed-H
    * @name handleStatusChange
    * This function sets the new status of the post
    * The new status is fed to this function by an arrow function in the corresponding button

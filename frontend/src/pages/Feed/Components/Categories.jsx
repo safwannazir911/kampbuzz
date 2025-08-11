@@ -15,7 +15,7 @@ function Categories({ categories, changeCategory, active }) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
-  //   @Tabeed-H
+  //   
   // implemented active category desing
   // the below design is implemented to the currernt active category
   const activeStyle = {

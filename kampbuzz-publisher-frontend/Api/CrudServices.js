@@ -41,7 +41,7 @@ export class CrudServices {
     return this.fetchJson(`${this.backendUrl}/login`, options);
   }
 
-  // @Tabeed-H
+  // 
   // API call to fetch dashboard details for publisher
   async FetchDetails() {
     const options = {
@@ -55,7 +55,7 @@ export class CrudServices {
     return this.fetchJson(`${this.backendUrl}/dashboard`, options);
   }
 
-  // @Tabeed-H
+  // 
   // API call to create an author by a publisher
   async CreateAuthor(data) {
     const options = {
@@ -70,7 +70,7 @@ export class CrudServices {
     return this.fetchJson(`${this.backendUrl}/create-author`, options);
   }
 
-  // @Tabeed-H
+  // 
   // API call to change the status of a post
   async ChangeStatus(data, type) {
     const options = {

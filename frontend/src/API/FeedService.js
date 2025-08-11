@@ -134,6 +134,7 @@ export class FeedService extends CrudServices {
     return this.fetchJson(`${this.backendUrl}/feed/framez/all`, options);
   }
 
+
   async bookmarkPost(id) {
     const options = {
       method: "POST",

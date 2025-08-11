@@ -9,6 +9,7 @@ export class CrudServices {
     this.backendUrl = `${this.link}/publisher`;
   }
 
+
   async handleResponse(response) {
     if (response.status >= 200 && response.status < 300) {
       return { data: response.data };

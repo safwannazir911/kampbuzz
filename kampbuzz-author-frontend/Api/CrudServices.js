@@ -71,7 +71,6 @@ export class CrudServices {
     return this.fetchJson(`${this.backendUrl}/dashboard`, options);
   }
 
-  // 
   // Added API call for Creating Post
   async CreatePost(FormData) {
     const options = {

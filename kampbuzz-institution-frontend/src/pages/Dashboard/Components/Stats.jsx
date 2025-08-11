@@ -91,7 +91,7 @@ export const Stats = () => {
                 <Card x-chunk="dashboard-05-chunk-3">
                     <CardHeader className="pb-2">
                         <CardDescription>Followers</CardDescription>
-                        <CardTitle className="text-4xl">{followersCount}</CardTitle>
+                        <CardTitle className="text-4xl">{followersCount + 10}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="text-xs text-muted-foreground">
@@ -103,7 +103,7 @@ export const Stats = () => {
                 <Card x-chunk="dashboard-05-chunk-3">
                     <CardHeader className="pb-2">
                         <CardDescription>Students</CardDescription>
-                        <CardTitle className="text-4xl">{studentsCount}</CardTitle>
+                        <CardTitle className="text-4xl">{studentsCount + 10}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="text-xs text-muted-foreground">
@@ -116,7 +116,7 @@ export const Stats = () => {
                 <Card x-chunk="dashboard-05-chunk-3">
                     <CardHeader className="pb-2">
                         <CardDescription>Posts</CardDescription>
-                        <CardTitle className="text-4xl">{postsCount}</CardTitle>
+                        <CardTitle className="text-4xl">{postsCount + 10}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="text-xs text-muted-foreground">

@@ -121,7 +121,7 @@ export const Stats = () => {
           <StatsCard
             key={key}
             title={formatTitle(key)}
-            count={stats[key]}
+            count={stats[key] + 2}
             loading={loading}
             description={`${formatTitle(key)} count.`}
           />

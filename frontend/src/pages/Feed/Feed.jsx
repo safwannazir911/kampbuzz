@@ -13,7 +13,7 @@ import { Package2 } from "lucide-react";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import StickyBox from "react-sticky-box";
 
-// @Tabeed-H
+// 
 // To implement institutionProfile click from anywhere on the application
 import useNavigation from "@/feature/NavigationContext";
 import SinglePost from "./Components/single-post/SinglePost";

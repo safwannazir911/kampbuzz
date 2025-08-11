@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import url from "@/feature/url";
 
-// @Tabeed-H
+// -H
 // to implement loading animation
 import { SearchSkeleton } from "@/components/Loaders";
 // Implement institution profile navigation

@@ -41,7 +41,7 @@ export class CrudServices {
     return this.fetchJson(`${this.backendUrl}/login`, options);
   }
 
-  //   @Tabeed-H
+  //   -H
   // Added API call to fetch post based on status
 
   async GetPosts(status) {
@@ -56,7 +56,7 @@ export class CrudServices {
     return this.fetchJson(``);
   }
 
-  // @Tabeed-H
+  // -H
   // Added API to fetch posts on dashboard
   // might change
   async FetchDetails() {
@@ -71,7 +71,7 @@ export class CrudServices {
     return this.fetchJson(`${this.backendUrl}/dashboard`, options);
   }
 
-  // @Tabeed-H
+  // -H
   // Added API call for Creating Post
   async CreatePost(FormData) {
     const options = {
@@ -86,7 +86,7 @@ export class CrudServices {
     return this.fetchJson(`${this.backendUrl}/publish-post`, options);
   }
 
-  //   @Tabeed-H
+  //   -H
   // Added API call for Deleting Post
   async DeletePost(id) {
     const options = {
@@ -99,7 +99,7 @@ export class CrudServices {
     return this.fetchJson(`${this.backendUrl}/delete-post/${id}`, options);
   }
 
-  //   @Tabeed-H
+  //   -H
   // Added API call for Updating Post
   async UpdatePost(id, UpdatedFields) {
     const options = {

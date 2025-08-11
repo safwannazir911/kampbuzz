@@ -1,5 +1,5 @@
 /**
- * @Tabeed-H
+ * -H
  * Log: To implement Instituion Profile page and its subsidary functions and behavior.
  * See: React Context
  *

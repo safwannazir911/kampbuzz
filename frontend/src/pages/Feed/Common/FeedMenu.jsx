@@ -15,7 +15,7 @@ const Item = ({ title, svg, onClick, status }) => {
   // changes style when active or clicked with some small transition effect
   const itemStyle = {
     backgroundColor: status === 1 ? "white" : "inherit",
-    // @Tabeed-H
+    // -H
     // added property color on menu so that unactive options are white while the selected option is in black color "Inherited color"
     color: status === 1 ? "inherit" : "white",
     transition: "color 0.3s, background-color 0.3s",

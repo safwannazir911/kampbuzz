@@ -92,7 +92,7 @@ export const PostSkeleton = () => (
   </div>
 );
 
-// @Tabeed-H
+// -H
 // Reels Page Loading Skeleton
 
 export function ReelPageSkeleton() {
@@ -122,7 +122,7 @@ export function ReelPageSkeleton() {
   );
 }
 
-// @Tabeed-H
+// -H
 // Institution profile page skeleton
 export function InstitutionProfileSkelton() {
   return (
@@ -141,7 +141,7 @@ export function InstitutionProfileSkelton() {
   );
 }
 
-// @Tabeed-H
+// -H
 // Discover Page skeleton
 export function DiscoverPageSkeleton() {
   return (
@@ -162,7 +162,7 @@ export function DiscoverPageSkeleton() {
   );
 }
 
-// @Tabeed-H
+// -H
 // Search animation
 export function SearchSkeleton() {
   return (

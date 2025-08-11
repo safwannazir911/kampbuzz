@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/Landing/Homepage";
 import { Signup } from "./pages/StudentSignup/Signup";
 import Layout from "./Layout/Layout";
-import Feed from "./pages/Feed/Feed"; // @Tabeed-H added feed page
+import Feed from "./pages/Feed/Feed"; // -H added feed page
 import ErrorPage from "./pages/Error/ErrorPage";
 import ExploreViewCard from "./pages/Feed/Components/ExploreViewCard";
 import OTPVerificationForm from "./pages/Auth/OTPVerificationForm";

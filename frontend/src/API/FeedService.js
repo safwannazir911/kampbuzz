@@ -99,7 +99,7 @@ export class FeedService extends CrudServices {
     return this.fetchJson(`${this.backendUrl}/feed/follow/${id}`, options);
   }
 
-  // -H
+  // 
   // Fixed Get Institution profile
   async GetInstitute(id) {
     const options = {

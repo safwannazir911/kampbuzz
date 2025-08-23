@@ -44,13 +44,13 @@ const Footer = () => {
           </div>
           <div className="text-[#0B0B0B] sm:text-xl text-[14px] snot-italic font-light leading-[normal] mt-3">
             Love writing? Want to write what’s happening on your campus and want
-            others to know. Become a writer for kampbuzz.
+            others to know. Become an author for kampbuzz.
           </div>
           <Button
             variant="outline"
             className="mt-3 inline-flex justify-center items-center bg-white text-black font-bold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] p-[2em] rounded-[10px] hover:bg-gray-100"
           >
-            Become a Reporter
+            Become an Author
           </Button>
         </div>
         <div className="h-auto  w-[60%] sm:flex justify-end hidden">
